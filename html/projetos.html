@@ -1,0 +1,78 @@
+<!-- View: Projetos. Os cartões são gerados a partir de js/data/dados.js -->
+<nav class="container breadcrumb" aria-label="Você está em">
+  <ol>
+    <li><a href="#/inicio">Início</a></li>
+    <li><span aria-current="page">Projetos</span></li>
+  </ol>
+</nav>
+
+<section class="secao" aria-labelledby="titulo-pagina">
+  <div class="container">
+    <div class="secao__cabecalho">
+      <h1 id="titulo-pagina">Projetos sociais</h1>
+      <p class="texto-destaque">Conheça as iniciativas que mantemos com o apoio de voluntários e doadores.</p>
+    </div>
+
+    <!-- Filtro dinâmico por categoria (eventos de clique) -->
+    <div class="filtros" role="group" aria-label="Filtrar projetos por categoria">
+      <button class="filtro" type="button" data-filtro="todos" aria-pressed="true">Todos</button>
+      {{#each categorias}}
+      <button class="filtro" type="button" data-filtro="{{id}}" aria-pressed="false">{{nome}}</button>
+      {{/each}}
+    </div>
+
+    <div class="grid-cartoes" data-componente="lista-projetos"></div>
+    <p class="vazio" data-sem-resultados hidden>Nenhum projeto nesta categoria.</p>
+  </div>
+</section>
+
+<section class="secao secao--alternada" aria-labelledby="titulo-voluntariado">
+  <div class="container grid">
+    <div class="col-lg-6">
+      <h2 id="titulo-voluntariado">Seja voluntário</h2>
+      <p>Escolha um projeto, informe sua disponibilidade semanal e participe de uma integração de 2 horas antes de começar.</p>
+    </div>
+    <ol class="passos col-lg-6">
+      <li>Preencha o <a href="#/cadastro?tipo=voluntario">formulário de cadastro</a> marcando "Voluntário".</li>
+      <li>Aguarde o contato da equipe em até 7 dias.</li>
+      <li>Participe da integração e comece a atuar.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="secao" aria-labelledby="titulo-doacoes">
+  <div class="container grid">
+    <div class="col-lg-8">
+      <h2 id="titulo-doacoes">Faça uma doação</h2>
+      <div class="grid">
+        <article class="col-md-6 cartao cartao--simples">
+          <h3>Doação financeira</h3>
+          <p>Contribuições únicas ou mensais via PIX ou transferência. Os dados bancários são enviados após o cadastro como doador.</p>
+          <button class="botao botao--secundario" type="button" data-acao="como-doar">Como doar</button>
+        </article>
+        <article class="col-md-6 cartao cartao--simples">
+          <h3>Doação de itens</h3>
+          <p>Alimentos não perecíveis, material escolar e computadores podem ser entregues na sede, de segunda a sexta, das 9h às 17h.</p>
+        </article>
+      </div>
+    </div>
+
+    <aside class="col-lg-4 destaque-lateral" aria-labelledby="titulo-transparencia">
+      <h2 id="titulo-transparencia">Transparência</h2>
+      <p>Os relatórios anuais de prestação de contas estão disponíveis mediante solicitação pelo nosso e-mail.</p>
+      <div class="alerta alerta--aviso" role="note">
+        <span class="alerta__icone" aria-hidden="true">!</span>
+        <p class="alerta__conteudo">Nunca solicitamos doações por telefone ou redes sociais. Use apenas os canais oficiais.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="secao" aria-label="Chamada para participação">
+  <div class="container">
+    <div class="cta">
+      <p class="texto-destaque">Pronto para fazer a diferença?</p>
+      <a class="botao botao--secundario" href="#/cadastro">Quero participar: fazer meu cadastro</a>
+    </div>
+  </div>
+</section>

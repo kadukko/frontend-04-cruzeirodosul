@@ -1,0 +1,11 @@
+{
+  "name": "ong-maos-solidarias",
+  "version": "3.0.0",
+  "description": "SPA do Instituto Mãos Solidárias — Experiência Prática III (Desenvolvimento Front-end)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node js/testes/testes.js",
+    "start": "npx serve ."
+  }
+}

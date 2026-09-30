@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Instituto Mãos Solidárias: ONG dedicada à educação, segurança alimentar e inclusão digital de famílias em situação de vulnerabilidade.">
+  <title>Instituto Mãos Solidárias</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/spa.css">
+  <!-- Biblioteca externa: Day.js (datas relativas em português) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/dayjs@1.11.13/dayjs.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/dayjs@1.11.13/locale/pt-br.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/dayjs@1.11.13/plugin/relativeTime.js"></script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo principal</a>
+
+  <!-- Casca fixa da SPA: cabeçalho, área dinâmica (#app) e rodapé -->
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <p class="logo"><a href="#/inicio" data-link><span class="logo__icone" aria-hidden="true">MS</span> Instituto Mãos Solidárias</a></p>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <span class="menu-toggle__barra"></span>
+        <span class="menu-toggle__barra"></span>
+        <span class="menu-toggle__barra"></span>
+      </button>
+
+      <nav id="menu-principal" class="menu" aria-label="Menu principal">
+        <ul class="menu__lista">
+          <li><a class="menu__link" href="#/inicio" data-rota="inicio">Início</a></li>
+          <li class="menu__item--dropdown">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-projetos" data-rota="projetos">
+              Projetos <span class="menu__seta" aria-hidden="true"></span>
+            </button>
+            <ul class="submenu" id="submenu-projetos">
+              <li><a href="#/projetos">Todos os projetos</a></li>
+              <li><a href="#/projetos?secao=titulo-educacao">Educação</a></li>
+              <li><a href="#/projetos?secao=titulo-alimentacao">Segurança alimentar</a></li>
+              <li><a href="#/projetos?secao=titulo-digital">Inclusão digital</a></li>
+              <li><a href="#/projetos?secao=titulo-voluntariado">Seja voluntário</a></li>
+            </ul>
+          </li>
+          <li><a class="menu__link" href="#/cadastro" data-rota="cadastro">Cadastro</a></li>
+          <li><a class="menu__link" href="#/meus-cadastros" data-rota="meus-cadastros">Meus cadastros <span class="contador" data-contador-cadastros hidden></span></a></li>
+          <li><a class="menu__link menu__link--destaque" href="#/projetos?secao=titulo-doacoes">Doe agora</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="menu-fundo" aria-hidden="true"></div>
+
+  <!-- Área onde o roteador injeta cada "página" (view) -->
+  <main id="conteudo" tabindex="-1">
+    <div id="app" aria-live="polite">
+      <noscript>
+        <p class="container">Este site precisa de JavaScript habilitado para funcionar.</p>
+      </noscript>
+      <p class="container carregando-view">Carregando…</p>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container grid">
+      <section class="col-md-6 col-lg-5" aria-labelledby="rodape-sobre">
+        <h2 id="rodape-sobre">Instituto Mãos Solidárias</h2>
+        <p>Educação, alimentação e inclusão digital para famílias em situação de vulnerabilidade desde 2012.</p>
+      </section>
+      <nav class="col-md-6 col-lg-3" aria-labelledby="rodape-links">
+        <h2 id="rodape-links">Navegação</h2>
+        <ul>
+          <li><a href="#/inicio">Início</a></li>
+          <li><a href="#/projetos">Projetos</a></li>
+          <li><a href="#/cadastro">Cadastro</a></li>
+          <li><a href="#/meus-cadastros">Meus cadastros</a></li>
+        </ul>
+      </nav>
+      <section class="col-md-12 col-lg-4" aria-labelledby="rodape-contato">
+        <h2 id="rodape-contato">Contato</h2>
+        <address>
+          Rua das Acácias, 120, Centro, Brasília-DF, CEP 70000-000<br>
+          <a href="mailto:contato@maossolidarias.org.br">contato@maossolidarias.org.br</a><br>
+          <a href="tel:+556130000000">(61) 3000-0000</a>
+        </address>
+      </section>
+    </div>
+    <div class="container rodape__base">
+      <p><small>&copy; 2026 Instituto Mãos Solidárias. CNPJ fictício para fins acadêmicos.</small></p>
+    </div>
+  </footer>
+
+  <!-- Componentes globais de feedback -->
+  <div class="toast-area" aria-live="polite"></div>
+
+  <div class="modal" id="modal-global" aria-hidden="true">
+    <div class="modal__caixa" role="dialog" aria-modal="true" aria-labelledby="modal-global-titulo" tabindex="-1">
+      <button class="modal__fechar" type="button" data-fechar-modal aria-label="Fechar janela">×</button>
+      <div class="modal__conteudo"></div>
+    </div>
+  </div>
+
+  <!-- Ponto de entrada da aplicação (ES Modules) -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!-- View: Início. Renderizada pelo motor de templates (js/modules/template.js) -->
+<section class="hero" aria-labelledby="titulo-principal">
+  <div class="container grid hero__grid">
+    <div class="col-lg-7">
+      <span class="badge">ONG desde {{instituicao.fundacao}} · {{instituicao.cidade}}</span>
+      <h1 id="titulo-principal">{{instituicao.nome}}</h1>
+      <p class="hero__texto">{{instituicao.slogan}}</p>
+      <div class="grupo-botoes">
+        <a class="botao botao--secundario" href="#/cadastro?tipo=voluntario">Quero ser voluntário</a>
+        <a class="botao botao--claro" href="#/projetos">Conheça os projetos</a>
+      </div>
+    </div>
+    <figure class="col-lg-5 hero__imagem">
+      <picture>
+        <source srcset="imagens/equipe.webp" type="image/webp">
+        <img src="imagens/equipe.png" alt="Voluntários do Instituto Mãos Solidárias reunidos em frente à sede" width="600" height="340">
+      </picture>
+      <figcaption>Equipe de voluntários na sede do instituto.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="secao" aria-labelledby="titulo-sobre">
+  <div class="container">
+    <div class="secao__cabecalho">
+      <h2 id="titulo-sobre">Quem somos</h2>
+      <p class="texto-destaque">{{instituicao.descricao}}</p>
+    </div>
+    <div class="grid">
+      {{#each pilares}}
+      <article class="{{classes}} cartao cartao--simples">
+        <span class="cartao__icone" aria-hidden="true">{{icone}}</span>
+        <h3>{{titulo}}</h3>
+        {{{conteudo}}}
+      </article>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<section class="secao secao--alternada" aria-labelledby="titulo-impacto">
+  <div class="container">
+    <div class="secao__cabecalho">
+      <h2 id="titulo-impacto">Nosso impacto</h2>
+      <p>Resultados alcançados com o apoio de voluntários, doadores e comunidades parceiras.</p>
+    </div>
+    <ul class="estatisticas">
+      {{#each estatisticas}}
+      <li class="estatistica"><strong data-contar="{{valor}}">0</strong> {{rotulo}}</li>
+      {{/each}}
+    </ul>
+    {{#if totalCadastros}}
+    <p class="nota-local">Você já fez <strong>{{totalCadastros}}</strong> cadastro(s) neste navegador. <a href="#/meus-cadastros">Ver meus cadastros</a></p>
+    {{/if}}
+  </div>
+</section>
+
+<section class="secao" aria-labelledby="titulo-participe">
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2 id="titulo-participe">Como participar</h2>
+        <p>Você pode contribuir como voluntário ou doador. Conheça nossas <a href="#/projetos">iniciativas solidárias</a> e faça seu <a href="#/cadastro">cadastro</a>.</p>
+      </div>
+      <a class="botao botao--secundario" href="#/cadastro">Fazer meu cadastro</a>
+    </div>
+  </div>
+</section>

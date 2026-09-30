@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Instituto Mãos Solidárias — Estilos da versão SPA (Experiência Prática III)
+   Complementa style.css com os componentes criados via JavaScript:
+     1. Transição entre views
+     2. Filtros de projetos
+     3. Formulário: estados extras
+     4. Lista "Meus cadastros"
+     5. Utilitários
+   ========================================================================== */
+
+/* 1. Transição entre views ------------------------------------------------ */
+#conteudo:focus { outline: none; }
+.view-entrando { animation: view-entrar 0.3s ease-out; }
+@keyframes view-entrar { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.carregando-view { padding-block: var(--espaco-7); text-align: center; color: var(--cor-neutra-600); }
+#app[aria-busy="true"] { opacity: 0.6; transition: opacity 0.2s; }
+h1[tabindex="-1"]:focus { outline: none; }
+
+/* Contador de cadastros no menu */
+.contador {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.4em;
+  height: 1.4em;
+  margin-left: var(--espaco-1);
+  padding-inline: 0.3em;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-negrito);
+  color: var(--cor-primaria-900);
+  background: var(--cor-secundaria-400);
+  border-radius: 999px;
+}
+.contador[hidden] { display: none; }
+
+/* 2. Filtros de projetos -------------------------------------------------- */
+.filtros { display: flex; flex-wrap: wrap; gap: var(--espaco-2); margin-bottom: var(--espaco-4); }
+.filtro {
+  min-height: 44px;
+  padding: var(--espaco-2) var(--espaco-3);
+  font: inherit;
+  font-size: var(--texto-sm);
+  color: var(--cor-primaria-900);
+  background: var(--cor-branco);
+  border: 1px solid var(--cor-neutra-300);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--transicao), color var(--transicao), border-color var(--transicao);
+}
+.filtro:hover { border-color: var(--cor-primaria-500); }
+.filtro[aria-pressed="true"] { background: var(--cor-primaria-700); border-color: var(--cor-primaria-700); color: var(--cor-branco); }
+/* auto-fill (em vez de auto-fit) evita que um único cartão filtrado ocupe a linha inteira */
+.grid-cartoes { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+@media (min-width: 1024px) { .grid-cartoes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.cartao-projeto { animation: view-entrar 0.3s ease-out; }
+.vazio { padding: var(--espaco-4); text-align: center; color: var(--cor-neutra-600); }
+.vazio[hidden] { display: none; }
+
+/* 3. Formulário: estados extras ------------------------------------------- */
+.campo--oculto { display: none; }
+/* Estado controlado pelo JS (validacao.js): aria-invalid = erro, .valido = sucesso */
+.formulario [aria-invalid="true"]:not([type="radio"]):not([type="checkbox"]) {
+  border-color: var(--cor-erro);
+  background-color: var(--cor-erro-fundo);
+}
+.formulario .valido:not([type="radio"]):not([type="checkbox"]) {
+  border-color: var(--cor-sucesso);
+  background-color: var(--cor-sucesso-fundo);
+}
+.contador-caracteres { display: block; text-align: right; color: var(--cor-neutra-600); }
+.contador-caracteres--limite { color: var(--cor-alerta); font-weight: var(--peso-medio); }
+.resumo-erros__lista { margin: var(--espaco-2) 0 0; padding-left: var(--espaco-4); }
+.resumo-erros__lista a { color: inherit; }
+.status-rascunho {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--espaco-2);
+  margin-bottom: var(--espaco-3);
+  padding: var(--espaco-2) var(--espaco-3);
+  font-size: var(--texto-sm);
+  color: var(--cor-info);
+  background: var(--cor-info-fundo);
+  border-radius: var(--raio-md);
+}
+.status-rascunho[hidden] { display: none; }
+.link-botao {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.destaque-lateral .alerta + .alerta { margin-top: var(--espaco-3); }
+
+/* 4. Lista "Meus cadastros" ----------------------------------------------- */
+.barra-acoes {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+.busca { display: grid; gap: var(--espaco-1); flex: 1 1 280px; font-size: var(--texto-sm); font-weight: var(--peso-medio); }
+.busca input {
+  min-height: 44px;
+  padding: var(--espaco-2) var(--espaco-3);
+  font: inherit;
+  font-weight: var(--peso-normal);
+  border: 1px solid var(--cor-neutra-300);
+  border-radius: var(--raio-md);
+}
+.resumo-lista { color: var(--cor-neutra-600); }
+.lista-cadastros { display: grid; gap: var(--espaco-4); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 768px) { .lista-cadastros { grid-template-columns: repeat(2, 1fr); } }
+.item-cadastro {
+  display: grid; gap: var(--espaco-3);
+  padding: var(--espaco-4);
+  background: var(--cor-branco);
+  border: 1px solid var(--cor-neutra-300);
+  border-radius: var(--raio-lg);
+  box-shadow: var(--sombra-sm, 0 1px 3px rgba(0, 0, 0, 0.08));
+  animation: view-entrar 0.3s ease-out;
+}
+.item-cadastro__cabecalho { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--espaco-2); }
+.item-cadastro__nome { margin: 0; font-size: var(--texto-md); }
+.item-cadastro__dados { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--espaco-2) var(--espaco-3); margin: 0; }
+.item-cadastro__dados dt { font-size: var(--texto-xs); color: var(--cor-neutra-600); text-transform: uppercase; letter-spacing: 0.04em; }
+.item-cadastro__dados dd { margin: 0; overflow-wrap: anywhere; }
+.item-cadastro__mensagem { margin: 0; font-style: italic; color: var(--cor-neutra-600); }
+.item-cadastro__data { margin: 0; font-size: var(--texto-sm); color: var(--cor-neutra-600); }
+.badge--voluntario { background: var(--cor-primaria-100); color: var(--cor-primaria-900); }
+.badge--doador { background: var(--cor-secundaria-100); color: var(--cor-secundaria-600); }
+.badge--ambos { background: var(--cor-info-fundo); color: var(--cor-info); }
+
+.estado-vazio { display: grid; justify-items: center; gap: var(--espaco-3); padding-block: var(--espaco-6); text-align: center; }
+.nota-local { margin-top: var(--espaco-4); text-align: center; }
+
+/* 5. Utilitários ---------------------------------------------------------- */
+.botao--perigo { background: var(--cor-erro); border-color: var(--cor-erro); color: var(--cor-branco); }
+.botao--perigo:hover { filter: brightness(0.9); }
+.botao--perigo-texto { color: var(--cor-erro); border-color: currentColor; }
+.modal__acoes { margin-top: var(--espaco-4); }
+.toast p { margin: 0; }
+.toast--info { background: var(--cor-info); }

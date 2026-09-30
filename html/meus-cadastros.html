@@ -1,0 +1,36 @@
+<!-- View: Meus cadastros. Lista os registros salvos no localStorage -->
+<nav class="container breadcrumb" aria-label="Você está em">
+  <ol>
+    <li><a href="#/inicio">Início</a></li>
+    <li><span aria-current="page">Meus cadastros</span></li>
+  </ol>
+</nav>
+
+<section class="secao" aria-labelledby="titulo-pagina">
+  <div class="container">
+    <div class="secao__cabecalho">
+      <h1 id="titulo-pagina">Meus cadastros</h1>
+      <p>Cadastros enviados a partir deste navegador. Os dados ficam guardados localmente (localStorage) e não são enviados a nenhum servidor.</p>
+    </div>
+
+    {{#if total}}
+    <div class="barra-acoes">
+      <label class="busca" for="busca-cadastros">
+        <span>Buscar por nome ou e-mail</span>
+        <input type="search" id="busca-cadastros" placeholder="Digite para filtrar…">
+      </label>
+      <button class="botao botao--contorno" type="button" data-acao="limpar-tudo">Excluir todos</button>
+    </div>
+    <p class="resumo-lista"><strong data-total>{{total}}</strong> cadastro(s) salvo(s).</p>
+    <ul class="lista-cadastros" data-componente="lista-cadastros"></ul>
+    <p class="vazio" data-sem-resultados hidden>Nenhum cadastro corresponde à busca.</p>
+    {{/if}}
+
+    {{#if vazio}}
+    <div class="estado-vazio">
+      <p class="texto-destaque">Você ainda não tem cadastros salvos.</p>
+      <a class="botao botao--secundario" href="#/cadastro">Fazer meu primeiro cadastro</a>
+    </div>
+    {{/if}}
+  </div>
+</section>
